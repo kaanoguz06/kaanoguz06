@@ -3,11 +3,11 @@ from telegram.ext import Updater, CommandHandler
 import subprocess
 import threading
 
-# Telegram botunuzun token'ını buraya ekleyin
 TOKEN = '6864389335:AAEn8sdItS2aXSFxvTeUNLi8Nh1V9Z993Aw'
 
-# Radyo yayın linkini buraya ekleyin
-*(http://yayin.radyoseymen.com.tr:1070/;stream.mp3)'
+
+[RADYO_YAYIN_LINKI](http://yayin.radyoseymen.com.tr:1070/;stream.mp3) = ['RADYO_YAYIN_LINKI'](http://yayin.radyoseymen.com.tr:1070/;stream.mp3)
+
 
 # Botun durumunu takip eden değişken
 active = False
@@ -15,9 +15,9 @@ active = False
 # /start komutu için işlev
 def start(update, context):
     user_id = update.message.from_user.id
-    context.bot.send_message(chat_id=user_id, text="Merhaba! Ben müzik botu. /hey komutu ile müzik yayınına başlayabilirsin.")
+    context.bot.send_message(chat_id=user_id, text="Merhaba! Ben müzik botu. .Galaxyfm komutu ile müzik yayınına başlayabilirsin.")
 
-# /Galaxyfm komutu için işlev
+# /hey komutu için işlev
 def hey(update, context):
     global active
     user_id = update.message.from_user.id
@@ -37,12 +37,12 @@ def start_radio():
 
 # Ana işlev
 def main():
-    updater = Updater(token=6864389335:AAEn8sdItS2aXSFxvTeUNLi8Nh1V9Z993Aw, use_context=True)
+    updater = Updater(token=TOKEN, use_context=True)
     dispatcher = updater.dispatcher
 
     # Komut işlevleri
     dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(CommandHandler("Galaxyfm", Galaxyfm))
+    dispatcher.add_handler(CommandHandler("hey", hey))
 
     updater.start_polling()
     updater.idle()
