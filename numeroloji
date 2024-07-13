@@ -1,0 +1,62 @@
+import tkinter as tk
+
+# Numeroloji tablosu
+numeroloji_tablosu = {
+    'A': 1, 'B': 2, 'C': 3, 'Ç': 3, 'D': 4, 'E': 5,
+    'F': 6, 'G': 7, 'Ğ': 7, 'H': 8, 'I': 9, 'İ': 9,
+    'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6,
+    'Ö': 6, 'P': 7, 'Q': 8, 'R': 9, 'S': 1, 'Ş': 1,
+    'T': 2, 'U': 3, 'Ü': 3, 'V': 4, 'W': 5, 'X': 6,
+    'Y': 7, 'Z': 8
+}
+
+# Ünlü ve ünsüz harfler
+unlu_harfler = 'AEIİOÖUÜ'
+unsuz_harfler = 'BCÇDFGĞHJKLMNPQRSTVYZŞ'
+
+# GUI oluşturma
+def numeroloji_hesapla():
+    ad = entry_ad.get().upper()
+    soyad = entry_soyad.get().upper()
+    dogum_tarihi = entry_dogum_tarihi.get()
+
+    # Ünlü ve ünsüz harflerin numerolojik değeri
+    unlu_deger = sum(numeroloji_tablosu[harf] for harf in ad + soyad if harf in unlu_harfler)
+    unsuz_deger = sum(numeroloji_tablosu[harf] for harf in ad + soyad if harf in unsuz_harfler)
+
+    # Doğum tarihinin numerolojik değeri
+    dogum_tarihi_deger = sum(int(harf) for harf in dogum_tarihi if harf.isdigit())
+
+    # Sonuçları gösterme
+    result_text.set(f"Ünlü Harflerin Değeri: {unlu_deger}\n"
+                    f"Ünsüz Harflerin Değeri: {unsuz_deger}\n"
+                    f"Doğum Tarihi Değeri: {dogum_tarihi_deger}")
+
+# Ana uygulama penceresi oluşturma
+root = tk.Tk()
+root.title("Türk Numeroloji Programı")
+
+# Etiketler
+label_ad = tk.Label(root, text="Ad:")
+label_ad.grid(row=0, column=0, padx=10, pady=10)
+
+label_soyad = tk.Label(root, text="Soyad:")
+label_soyad.grid(row=1, column=0, padx=10, pady=10)
+
+label_dogum_tarihi = tk.Label(root, text="Doğum Tarihi (YYYYMMDD):")
+label_dogum_tarihi.grid(row=2, column=0, padx=10, pady=10)
+
+# Giriş kutuları
+entry_ad = tk.Entry(root, width=30)
+entry_ad.grid(row=0, column=1, padx=10, pady=10)
+
+entry_soyad = tk.Entry(root, width=30)
+entry_soyad.grid(row=1, column=1, padx=10, pady=10)
+
+entry_dogum_tarihi = tk.Entry(root, width=30)
+entry_dogum_tarihi.grid(row=2, column=1, padx=10, pady=10)
+
+# Sonuç kutusu
+result_text = tk.StringVar()
+label_sonuc = tk.Label(root, textvariable=result_text, justify="left")
+label_sonuc.grid(row=4
